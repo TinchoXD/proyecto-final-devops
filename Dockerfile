@@ -13,7 +13,7 @@ RUN pip install \
 FROM python:3.12-slim
 
 ENV APP_ENV=production
-ENV APP_PORT=8005
+ENV APP_PORT=8000
 ENV GROUP_NAME="Grupo 5"
 ENV GROUP_MEMBERS="Martín Balarezo, Fernando Cuenca"
 ENV COURSE_NAME="Curso de Profesionalización en DevOps"
@@ -37,6 +37,6 @@ USER appuser
 EXPOSE 8005
 
 HEALTHCHECK --interval=30s --timeout=5s --retries=3 --start-period=10s \
-    CMD python -c "import urllib.request; urllib.request.urlopen('http://localhost:8005/health')"
+    CMD python -c "import urllib.request; urllib.request.urlopen('http://localhost:8000/health')"
 
 CMD ["sh", "-c", "uvicorn main:app --host 0.0.0.0 --port ${APP_PORT}"]
