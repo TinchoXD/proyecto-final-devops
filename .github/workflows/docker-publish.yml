@@ -2,16 +2,14 @@ name: Build and Push Docker Image
 
 on:
   push:
-    branches:
-      - main
-  workflow_dispatch:
+    tags:
+      - "v*"
 
 permissions:
   contents: read
 
 env:
-  IMAGE_NAME: martinb1992/devops-final-project
-  IMAGE_TAG: v1
+  IMAGE_NAME: martinb1992/proyecto-final-devops
 
 jobs:
   build-and-push:
@@ -38,4 +36,4 @@ jobs:
           file: ./Dockerfile
           platforms: linux/amd64
           push: true
-          tags: ${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }}
+          tags: ${{ env.IMAGE_NAME }}:${{ github.ref_name }}
